@@ -76,7 +76,9 @@ console.log(getUsersWithAge(users, 30, 40));
 
 const calculateTotalBalance = users => {
   
-  return users.map(user => user.balance).reduce((acc, value)=>acc+value,0);
+  return users
+    // .map(user => user.balance)
+    .reduce((acc, user) => acc + user.balance, 0);
 };
 
 console.log(calculateTotalBalance(users)); // 20916
@@ -132,8 +134,8 @@ console.log(getNameSort(users));
 
 const getSortedUniqueSkills = users => {
   return users
-    .map(user => user.skills)
-    .reduce((allSkills, skills) => [...allSkills, ...skills])
+    // .map(user => user.skills)
+    .reduce((acc, user) => [...acc, ...user.skills],[])
     .filter((skill, index, array) => array.indexOf(skill) === index)
     .sort();
 };
