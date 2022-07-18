@@ -87,7 +87,9 @@ console.log(calculateTotalBalance(users)); // 20916
 // Массив имен всех пользователей у которых есть друг с указанным именем.
 
 const getUsersWithFriend = (users, friendName) => {
- return users.filter(user => user.friends.some(friend=> friend ===friendName)).map(user=>user.name);
+  return users
+    .filter(user => user.friends.some(friend => friend === friendName))
+    .map(user => user.name);
 };
 
 console.log(getUsersWithFriend(users, 'Briana Decker'));
@@ -111,7 +113,9 @@ console.log(getNamesSortedByFriendsCount(users));
 // Массив имен(поле name) людей, отсортированных в зависимости от возраста
 
 const getNamesSortAge = users => {
-  return [...users].sort((prevuser , nextuser)=>prevuser.age -nextuser.age).map(user => user.name);
+  return [...users]
+    .sort((prevuser, nextuser) => prevuser.age - nextuser.age)
+    .map(user => user.name);
 }
 
 console.log(getNamesSortAge(users));
@@ -135,7 +139,8 @@ console.log(getNameSort(users));
 const getSortedUniqueSkills = users => {
   return users
     // .map(user => user.skills)
-    .reduce((acc, user) => [...acc, ...user.skills],[])
+    // .reduce((acc, user) => [...acc, ...user.skills],[])
+    .flatMap(user=>user.skills)
     .filter((skill, index, array) => array.indexOf(skill) === index)
     .sort();
 };
